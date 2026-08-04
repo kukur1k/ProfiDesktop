@@ -1,7 +1,7 @@
 
 namespace ProfiDesktop.Models;
 
-public record LoghinRequest(string Email, string Password);
+public record LoginRequest(string Email, string Password);
 
 public record ApiResponce<T>(
     bool success,
