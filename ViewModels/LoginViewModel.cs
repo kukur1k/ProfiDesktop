@@ -35,8 +35,8 @@ public partial class LoginViewModel : ViewModelBase
 
         if (Password.Length < 6)
         {
-            HasError = true;
             ErrorText = "Пароль минимум 6 символов";
+            HasError = true;
             return;
         }
 
@@ -46,8 +46,8 @@ public partial class LoginViewModel : ViewModelBase
 
         if (error is not null)
         {
-            HasError = true;
             ErrorText = error;
+            HasError = true;
             return;
         }
 
