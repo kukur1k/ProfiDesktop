@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProfiDesktop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f430fbc4768ca0343ddbaf6e9ea630b9d2d4139")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37d0673fb8c580366a178a25215d5d63417b0643")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProfiDesktop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProfiDesktop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

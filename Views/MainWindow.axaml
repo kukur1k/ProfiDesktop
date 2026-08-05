@@ -3,7 +3,8 @@
         xmlns:vm="using:ProfiDesktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1366" d:DesignHeight="768"
+        xmlns:views="clr-namespace:ProfiDesktop.Views"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
         x:Class="ProfiDesktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -12,6 +13,25 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+
+    <Window.DataTemplates>
+        <DataTemplate DataType="vm:LoginViewModel">
+            <views:LoginView/>
+        </DataTemplate>
+        <DataTemplate DataType="vm:DashBoardViewModel">
+            <views:LoginView/>
+        </DataTemplate>
+    </Window.DataTemplates>
+
+    <Panel>
+        <!-- Логин на весь экран-->
+        <ContentControl Content="{Binding CurrentPage}"
+                        IsVisible="{Binding IsLoginPage}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"/>
+    </Panel>
 
 
 </Window>

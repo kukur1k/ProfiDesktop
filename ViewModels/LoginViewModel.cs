@@ -31,7 +31,7 @@ public partial class LoginViewModel : ViewModelBase
     private async Task Login()
     {
         HasError = false;
-        ErrorText = "";
+        // ErrorText = ""
 
         if (Password.Length < 6)
         {
