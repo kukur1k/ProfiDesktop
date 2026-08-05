@@ -1678,11 +1678,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\ProfiDesktop.csproj",
+      "projectUniqueName": "D:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\ProfiDesktop.csproj",
       "projectName": "ProfiDesktop",
-      "projectPath": "d:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\ProfiDesktop.csproj",
+      "projectPath": "D:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\ProfiDesktop.csproj",
       "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-      "outputPath": "d:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\obj\\",
+      "outputPath": "D:\\C#_Project\\PROFI_TRENNING\\ProfiDesktop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",

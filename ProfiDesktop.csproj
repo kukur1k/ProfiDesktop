@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <AvaloniaXaml Include="Views\**\*.axaml" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
