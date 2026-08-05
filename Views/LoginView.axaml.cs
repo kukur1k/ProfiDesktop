@@ -1,10 +1,12 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
 namespace ProfiDesktop.Views;
 
-public partial class LoginView : UserControl
+public partial class LoginView1 : UserControl
 {
-    public LoginView()
+    public LoginView1()
     {
         InitializeComponent();
     }

@@ -9,18 +9,18 @@
 
     <Grid RowDefinitions="Auto,Auto,Auto">
         <StackPanel Grid.Row="0"
-            HorizontalAlignment="Center"
-            Margin="0 50 0 30">
+                    HorizontalAlignment="Center"
+                    Margin="0 50 0 30">
             <TextBlock Text="ИТ-Проф" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
             <TextBlock Text="Личный кабинет HR" FontSize="13" HorizontalAlignment="Center" Margin="0 5 0 0"/>
         </StackPanel>
 
         <Border Grid.Row="1"
-            Width="420"
-            HorizontalAlignment="Center"
-            BorderBrush="#AliceBlue"
-            BorderThickness="1"
-            Padding="25 20">
+                Width="420"
+                HorizontalAlignment="Center"
+                BorderBrush="#AliceBlue"
+                BorderThickness="1"
+                Padding="25 20">
 
             <StackPanel>
                 <Grid ColumnDefinitions="80,300">
