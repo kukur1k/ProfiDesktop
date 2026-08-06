@@ -40,6 +40,14 @@ public partial class MainWindowViewModel : ViewModelBase
         CurrentPage = new LoginViewModel(this);
     }
 
-    
+    [RelayCommand]
+    public async Task Refresh()
+    {
+        if (CurrentPage is DashBoardViewModel dashBoard)
+            await dashBoard.LoadDataAsync();
+    }
+
+    [RelayCommand] public void ToggleSidebar()   => IsSideBarExpanded = !IsSideBarExpanded;
+    [RelayCommand] public void GoDashboard()     => CurrentPage = new DashBoardViewModel(this);
 }
 

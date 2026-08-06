@@ -19,22 +19,22 @@
             <views:LoginView/>
         </DataTemplate>
         <DataTemplate DataType="vm:DashBoardViewModel">
-            <views:LoginView/>
+            <views:DashBoardView/>
         </DataTemplate>
     </Window.DataTemplates>
 
     <Panel>
         <!-- Логин на весь экран-->
-        <!-- <ContentControl Content="{Binding CurrentPage}"
+        <ContentControl Content="{Binding CurrentPage}"
                         IsVisible="{Binding IsLoginPage}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"/> -->
+                        VerticalContentAlignment="Stretch"/>
 
         
-        <Grid RowDefinitions="Auto,*">
-            <!-- IsVisible="{Binding !IsLoginPage}"> -->
+        <Grid RowDefinitions="Auto,*"
+            IsVisible="{Binding !IsLoginPage}">
 
             <!--Footer-->
             <Border Grid.Row="0"
@@ -85,7 +85,7 @@
                             Content="Главная"
                             FontSize="15"
                             FontWeight="DemiBold"
-                            Command=""/>  
+                            Command="{Binding GoDashboard}"/>  
                         <Button Background="Transparent"
                             Content="Поиск"
                             FontSize="15"
@@ -113,14 +113,21 @@
                             Command=""/>  
                         <Button Content="Обновить"
                             Margin="0 30"
+                            Command="{Binding RefreshCommand}"
                             FontSize="15"
                             FontWeight="DemiBold"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Center"/>  
                     </StackPanel>
                 </Border>
-            </Grid>
 
+                <ContentControl Grid.Column="1"
+                    Content="{Binding CurrentPage}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"/> 
+            </Grid>
         </Grid>
     </Panel>
 
