@@ -25,12 +25,52 @@
 
     <Panel>
         <!-- Логин на весь экран-->
-        <ContentControl Content="{Binding CurrentPage}"
+        <!--<ContentControl Content="{Binding CurrentPage}"
                         IsVisible="{Binding IsLoginPage}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"/>
+                        VerticalContentAlignment="Stretch"/>-->
+
+        
+        <Grid RowDefinitions="Auto,*">
+            <!--IsVisible="{Binding !IsLoginPage}">-->
+
+            <Border Grid.Row="0"
+                Background="#e8e6f0"
+                BorderThickness="0 0 0 1"
+                BorderBrush="#5d5b68"
+                Padding="10 5">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <Button Content="X"></Button>  
+                        <TextBlock Text="ИТ-Проф"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontSize="15"
+                            FontWeight="SemiBold"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Spacing="10">
+                        <Image Source="avares://ProfiDesktop/Assets/avalonia-logo.ico"
+                            Width="40" Height="40"/>
+                        <TextBlock Text="{Binding UserName}" FontSize="14" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding UserRole, StringFormat='({0})'}" FontSize="13" Foreground="#5d5b68" VerticalAlignment="Center"/>
+                        <Button Content="▼" Height="30" Width="32" Margin="0 0 10 0">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Мой профиль" Command=""/>
+                                    <MenuItem Header="Настройки" Command=""/>
+                                    <MenuItem Header="Выход" Command=""/>
+                                </MenuFlyout>
+                            </Button.Flyout>
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+            
+        </Grid>
+
     </Panel>
 
 
