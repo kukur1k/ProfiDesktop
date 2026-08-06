@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ProfiDesktop.ViewModels;
 
@@ -28,6 +29,14 @@ public partial class MainWindowViewModel : ViewModelBase
         UserName = userName;
         UserRole = $"({role})";
         CurrentPage = new DashBoardViewModel(this);
+    }
+
+    [RelayCommand]
+    public void Logout()
+    {
+        UserName = "";
+        UserRole = "";
+        CurrentPage = new LoginViewModel(this);
     }
 }
 
