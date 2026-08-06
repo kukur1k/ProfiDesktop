@@ -91,7 +91,7 @@ public partial class DashBoardViewModel : ViewModelBase
 
         await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
         {
-            ActiveProfiles = summary.ActiveProfiles.ToString("NO");
+            ActiveProfiles = summary.ActiveProfiles.ToString("N0");
             ProfilesDelta = FormatDelta(summary.ProfilesDelta, "");
             ProfilesDeltaWeek = FormatDelta(summary.ProfilesDeltaWeek, "");
             VacancyMatch = $"{summary.VacancyMatch}%";

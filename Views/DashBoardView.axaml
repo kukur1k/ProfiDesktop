@@ -14,92 +14,75 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="16,12">
         <StackPanel Spacing="16">
 
-            <!-- ========== ЗАГОЛОВОК ========== -->
-            <TextBlock Text="📊 Панель управления" 
+            <TextBlock Text="📊 Сводка по активности" 
                        FontSize="22" 
                        FontWeight="Bold" />
 
-            <!-- ========== ОШИБКА ========== -->
             <TextBlock Text="{Binding ErrorText}"
                        Foreground="Red" 
                        IsVisible="{Binding HasError}"
                        TextWrapping="Wrap" />
-
-            <!-- ========== ИНДИКАТОР ЗАГРУЗКИ ========== -->
-            <ProgressBar IsIndeterminate="{Binding IsLoading}" 
-                         IsVisible="{Binding IsLoading}"
-                         Height="4" />
-
-            <!-- ========== ВРЕМЯ ОБНОВЛЕНИЯ ========== -->
             <TextBlock Text="{Binding LastUpdated}" 
                        FontSize="11" 
                        Foreground="#888" />
 
-            <!-- ========== МЕТРИКИ ========== -->
+            <!-- ========== Метрики ========== -->
             <WrapPanel>
-                
-                <!-- 1. Активные профили -->
-                <Border Classes="card" Margin="0,0,10,10">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="👤 Активные профили" FontSize="11" Foreground="#666" />
-                        <TextBlock Text="{Binding ActiveProfiles}" FontSize="22" FontWeight="Bold" />
-                        <TextBlock Text="{Binding ProfilesDelta}" FontSize="11" Foreground="#448844" />
-                        <TextBlock Text="за сутки" FontSize="10" Foreground="#888" />
-                    </StackPanel>
+                <!--Профили-->
+                <Border Margin="0 0 10 10">
+                    <StackPanel Spacing="5" HorizontalAlignment="Center">
+                        <TextBlock Text="Профили:" FontSize="13" Foreground="#5d5b68"/>
+                        <TextBlock Text="{Binding ActiveProfiles}" FontSize="22" FontWeight="Bold"/> 
+
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding ProfilesDelta}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за сутки" Foreground="#757373"/>
+                        </StackPanel> 
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding ProfilesDeltaWeek}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за неделю" Foreground="#757373"/>
+                        </StackPanel> 
+                        
+                    </StackPanel>    
+                </Border>
+        
+                <!--Вакансии-->
+                <Border Margin="0 0 10 10">
+                    <StackPanel Spacing="5" HorizontalAlignment="Center">
+                        <TextBlock Text="Вакансии:" FontSize="13" Foreground="#5d5b68"/>
+                        <TextBlock Text="{Binding VacancyMatch}" FontSize="22" FontWeight="Bold"/> 
+
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding VacancyMatchDelta}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за сутки" Foreground="#757373"/>
+                        </StackPanel>
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding VacancyMatchDeltaWeek}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за неделю" Foreground="#757373"/>
+                        </StackPanel>
+                        
+                    </StackPanel>    
                 </Border>
 
-                <!-- 2. Соответствие вакансиям -->
-                <Border Classes="card" Margin="0,0,10,10">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="💼 Соответствие вакансиям" FontSize="11" Foreground="#666" />
-                        <TextBlock Text="{Binding VacancyMatch}" FontSize="22" FontWeight="Bold" />
-                        <TextBlock Text="{Binding VacancyMatchDelta}" FontSize="11" Foreground="#CC4444" />
-                        <TextBlock Text="за сутки" FontSize="10" Foreground="#888" />
-                    </StackPanel>
-                </Border>
+                <!--Рейтинг-->
+                <Border Margin="0 0 10 10">
+                    <StackPanel Spacing="5" HorizontalAlignment="Center">
+                        <TextBlock Text="Рейтинг:" FontSize="13" Foreground="#5d5b68"/>
+                        <TextBlock Text="{Binding AvgRating}" FontSize="22" FontWeight="Bold"/> 
 
-                <!-- 3. Средний рейтинг -->
-                <Border Classes="card" Margin="0,0,10,10">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="⭐ Средний рейтинг" FontSize="11" Foreground="#666" />
-                        <TextBlock Text="{Binding AvgRating}" FontSize="22" FontWeight="Bold" />
-                        <TextBlock Text="{Binding AvgRatingDelta}" FontSize="11" Foreground="#448844" />
-                        <TextBlock Text="за сутки" FontSize="10" Foreground="#888" />
-                    </StackPanel>
-                </Border>
-
-                <!-- 4. Рост за неделю -->
-                <Border Classes="card" Margin="0,0,10,10">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="📈 Рост за неделю" FontSize="11" Foreground="#666" />
-                        <TextBlock Text="{Binding ProfilesDeltaWeek}" FontSize="22" FontWeight="Bold" />
-                        <TextBlock Text="{Binding VacancyMatchDeltaWeek}" FontSize="11" Foreground="#CC4444" />
-                        <TextBlock Text="вакансии за неделю" FontSize="10" Foreground="#888" />
-                    </StackPanel>
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding AvgRatingDelta}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за сутки" Foreground="#757373"/>
+                        </StackPanel>
+                        <StackPanel Spacing="5" Orientation="Horizontal">
+                            <TextBlock FontSize="13" Text="{Binding AvgRatingDeltaWeek}" Foreground="#448844"/>
+                            <TextBlock FontSize="11" Text="за неделю" Foreground="#757373"/>
+                        </StackPanel>
+                        
+                    </StackPanel>    
                 </Border>
 
             </WrapPanel>
-
-            <!-- ========== ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ ========== -->
-            <Border Classes="card">
-                <StackPanel Spacing="8">
-                    <TextBlock Text="📋 Детальная статистика" FontWeight="SemiBold" />
-                    
-                    <Grid ColumnDefinitions="Auto,*,Auto,*" RowDefinitions="Auto,Auto">
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Профили (за сутки):" Foreground="#666" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ProfilesDelta}" FontWeight="Bold" />
-                        
-                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Рейтинг (за сутки):" Foreground="#666" Margin="20,0,0,0" />
-                        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding AvgRatingDelta}" FontWeight="Bold" />
-
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Профили (за неделю):" Foreground="#666" Margin="0,8,0,0" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ProfilesDeltaWeek}" FontWeight="Bold" Margin="0,8,0,0" />
-                        
-                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Рейтинг (за неделю):" Foreground="#666" Margin="20,8,0,0" />
-                        <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding AvgRatingDeltaWeek}" FontWeight="Bold" Margin="0,8,0,0" />
-                    </Grid>
-                </StackPanel>
-            </Border>
 
         </StackPanel>
     </ScrollViewer>
