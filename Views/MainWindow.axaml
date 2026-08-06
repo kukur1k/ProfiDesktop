@@ -25,16 +25,16 @@
 
     <Panel>
         <!-- Логин на весь экран-->
-        <ContentControl Content="{Binding CurrentPage}"
+        <!-- <ContentControl Content="{Binding CurrentPage}"
                         IsVisible="{Binding IsLoginPage}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"/>
+                        VerticalContentAlignment="Stretch"/> -->
 
         
-        <Grid RowDefinitions="Auto,*"
-            IsVisible="{Binding !IsLoginPage}">
+        <Grid RowDefinitions="Auto,*">
+            <!-- IsVisible="{Binding !IsLoginPage}"> -->
 
             <!--Footer-->
             <Border Grid.Row="0"

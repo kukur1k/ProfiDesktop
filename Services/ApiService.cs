@@ -73,8 +73,35 @@ public class ApiService
         }
     }
 
+    public async Task<Activ?> GetSummary()
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<Activ>>("/dashboard/summary");
+            return responce?.data;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
 }
 
+
+public class Activ
+{
+    public int ActiveProfiles { get; set; }
+    public int ProfilesDelta { get; set; }
+    public int ProfilesDeltaWeek { get; set; }
+    public double AvgRating { get; set; }
+    public double AvgRatingDelta { get; set; }
+    public double AvgRatingDeltaWeek { get; set; }
+    public double VacancyMatch { get; set; }
+    public double VacancyMatchDelta { get; set; }
+    public double VacancyMatchDeltaWeek { get; set; }
+}
 
 public partial class User
 {
