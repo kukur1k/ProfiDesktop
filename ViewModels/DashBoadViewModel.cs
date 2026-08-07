@@ -30,6 +30,10 @@ public partial class DashBoardViewModel : ViewModelBase
     [ObservableProperty] private string _vacancyMatchDelta = "-";
     [ObservableProperty] private string _vacancyMatchDeltaWeek = "-";
 
+    // ---------------------------Топ навыков---------------------------
+    [ObservableProperty]
+    private ObservableCollection<TechItem> _topTechnologies = [];
+
     // ---------------------------Состояние---------------------------
     [ObservableProperty] private bool   _isLoading   = false;
     [ObservableProperty] private string _lastUpdated = "";
@@ -105,8 +109,24 @@ public partial class DashBoardViewModel : ViewModelBase
     }
 
     private async Task LoadTopTechAsync()
-    {}
+    {
+        var topSkills = await ApiService.Instance.GetTopTechList();
+        if (topSkills is null) return;
+
+        await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            TopTechnologies.Clear();
+            foreach (var item in topSkills.Items)
+                TopTechnologies.Add(new TechItem(item.Name, item.Percent));
+        });
+    }
 
     private static string FormatDelta(double delta, string unit) =>
         delta >= 0 ? $"+{delta}{unit}" : $"{delta}{unit}";
+}
+
+
+public record TechItem(string Name, double Percent)
+{
+    public double BarWidth => Percent * 1.5; // макс ~150px при 100%
 }

@@ -87,6 +87,32 @@ public class ApiService
         }
     }
 
+    public async Task<TopTechList?> GetTopTechList()
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<TopTechList>>("/skills/top");
+            return responce?.data;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return null;
+        }
+    }
+
+}
+
+
+public class TopTech
+{
+    public string Name { get; set; }
+    public int Count { get; set; }
+    public double Percent { get; set; }
+}
+public class TopTechList
+{
+    public List<TopTech> Items { get; set; } 
 }
 
 
