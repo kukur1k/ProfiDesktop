@@ -104,6 +104,16 @@ public class ApiService
 }
 
 
+public class SearchResultItem
+{
+    public int Id { get; set; }
+    public string DisplayName { get; set; }
+    public List<string> Skills { get; set; }
+    public double CompetencyIndex { get; set; }
+    public double TrustLevel { get; set; }
+    public string Trend { get; set; }  // "up", "stable", "down"
+}
+
 public class TopTech
 {
     public string Name { get; set; }
