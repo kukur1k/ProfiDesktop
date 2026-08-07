@@ -84,6 +84,50 @@
 
             </WrapPanel>
 
+            <TextBlock Text="✅ Топ-5 технологий" 
+                FontSize="22" 
+                FontWeight="Bold" />
+
+            <Border BorderBrush="#3f0fec" BorderThickness="1" Padding="5" HorizontalAlignment="Left">
+                <StackPanel Spacing="10">
+                    <ItemsControl ItemsSource="{Binding TopTechnologies}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="vm:TechItem">
+                                <Grid ColumnDefinitions="80,150,70" Margin="0 4">
+                                    <TextBlock Grid.Column="0"
+                                        Text="{Binding Name}"
+                                        VerticalAlignment="Center"/>
+                                    <Border Grid.Column="1"
+                                        Height="12"
+                                        Background="#EEEEEE"
+                                        BorderBrush="#CCCCCC"
+                                        BorderThickness="1"
+                                        VerticalAlignment="Center">
+                                        <Border HorizontalAlignment="Left"
+                                            Background="#3f0fec"
+                                            Width="{Binding BarWidth}" />
+                                    </Border>
+                                    <TextBlock Grid.Column="2" 
+                                        Text="{Binding Percent, StringFormat=' {0}%'}"
+                                        VerticalAlignment="Center"
+                                        Margin="5 0 0 0"/>
+                                </Grid>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        
+                    </ItemsControl>
+
+                        <!-- Нет данных -->
+                        <TextBlock Text="Нет данных"
+                                    Foreground="#888" FontSize="11"
+                                    HorizontalAlignment="Center"
+                                    Margin="0 8"
+                                    IsVisible="{Binding !TopTechnologies.Count}" />
+                    
+                </StackPanel>    
+            </Border>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>
