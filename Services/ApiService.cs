@@ -113,7 +113,7 @@ public class ApiService
     {
         try
         {
-            var responce = await _http.GetFromJsonAsync<ApiResponce<UserSearch>>($"/users/search?minLevel={minLevel}$minRating={minRating}&minExp={minExp}&maxLevel={maxLevel}&technology={technology}&page={page}"); 
+            var responce = await _http.GetFromJsonAsync<ApiResponce<UserSearch>>($"/users/search?minLevel={minLevel}&minRating={minRating}&minExp={minExp}&maxLevel={maxLevel}&technology={technology}&page={page}"); 
             return responce;
         }
         catch (Exception ex)
