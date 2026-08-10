@@ -103,7 +103,7 @@ public class ApiService
 
 
     public async Task<ApiResponce<UserSearch>> GetUsersSearchAsync(
-        string[]? technology = null,
+        string? technology = null,
         int minLevel = 0,
         int maxLevel = 10,
         double minRating = 0,
@@ -122,6 +122,20 @@ public class ApiService
             return null;
         }
     }
+
+    public async Task<List<string>?> GetSuggestSearchAsync(string query)
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<List<String>>>($"/skills/suggest?q={query}");
+            return responce?.data;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    } 
 
 }
 

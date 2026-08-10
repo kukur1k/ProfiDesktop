@@ -49,5 +49,6 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [RelayCommand] public void ToggleSidebar()   => IsSideBarExpanded = !IsSideBarExpanded;
     [RelayCommand] public void GoDashboard()     => CurrentPage = new DashBoardViewModel(this);
+    [RelayCommand] public void GoSearch()     => CurrentPage = new SearchViewModel(this);
 }
 
