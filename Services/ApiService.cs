@@ -101,10 +101,33 @@ public class ApiService
         }
     }
 
+
+    public async Task<ApiResponce<UserSearch>> GetUsersSearchAsync(
+        string[]? technology = null,
+        int minLevel = 0,
+        int maxLevel = 10,
+        double minRating = 0,
+        int minExp = 0,
+        int page = 1
+    )
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<UserSearch>>($"/users/search?minLevel={minLevel}$minRating={minRating}&minExp={minExp}$maxLevel={maxLevel}&technology={technology}&page={page}"); 
+            return responce;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
 }
 
 
-public class SearchResultItem
+
+public class SearchUserResultItem
 {
     public int Id { get; set; }
     public string DisplayName { get; set; }
@@ -113,6 +136,8 @@ public class SearchResultItem
     public double TrustLevel { get; set; }
     public string Trend { get; set; }  // "up", "stable", "down"
 }
+
+public record UserSearch(int Total, List<SearchUserResultItem> Users);
 
 public class TopTech
 {
