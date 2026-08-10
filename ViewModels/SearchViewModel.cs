@@ -86,7 +86,7 @@ public partial class SearchViewModel : ViewModelBase
         }
         else
         {
-            Suggestions.Clear();
+            Suggestions = new List<string>();
             ShowSuggest = false;
         }
     }
@@ -94,7 +94,7 @@ public partial class SearchViewModel : ViewModelBase
 
     // команда при выборе (добавлении чипа технологии из списка)
     [RelayCommand]
-    private void SelectTechOnSuggest(string technology)
+    public void SelectTechOnSuggest(string technology)
     {
         var exist = !string.IsNullOrEmpty(Technology)
             ? Technology.Split(',').ToList()

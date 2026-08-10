@@ -91,3 +91,4 @@ D:\C#_Project\PROFI_TRENNING\ProfiDesktop\obj\Debug\net10.0\refint\ProfiDesktop.
 D:\C#_Project\PROFI_TRENNING\ProfiDesktop\obj\Debug\net10.0\ProfiDesktop.pdb
 D:\C#_Project\PROFI_TRENNING\ProfiDesktop\obj\Debug\net10.0\ProfiDesktop.genruntimeconfig.cache
 D:\C#_Project\PROFI_TRENNING\ProfiDesktop\obj\Debug\net10.0\ref\ProfiDesktop.dll
+D:\C#_Project\PROFI_TRENNING\ProfiDesktop\bin\Debug\net10.0\Avalonia.Controls.DataGrid.dll

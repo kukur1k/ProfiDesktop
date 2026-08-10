@@ -9,7 +9,7 @@ build_property.AvaloniaNameGeneratorAttachDevTools = true
 build_property.AvaloniaUseCompiledBindingsByDefault = true
 build_property.AvaloniaMainPackageVersion = 12.1.0
 build_property.AvaloniaPreviewerNetCoreToolPath = C:\Users\pc\.nuget\packages\avalonia\12.1.0\buildTransitive\\..\tools\net8.0\designer\Avalonia.Designer.HostApp.dll
-build_property.AvaloniaResourcePaths = D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Assets\avalonia-logo.ico,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Assets\profileIcon.png,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\App.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\DashBoardView.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\LoginView.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\MainWindow.axaml
+build_property.AvaloniaResourcePaths = D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Assets\avalonia-logo.ico,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Assets\profileIcon.png,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\App.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\DashBoardView.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\LoginView.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\MainWindow.axaml,D:\C#_Project\PROFI_TRENNING\ProfiDesktop\Views\SearchView.axaml
 build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
 build_property._MvvmToolkitIsUsingWindowsRuntimePack = false
 build_property.CsWinRTComponent = 
@@ -43,4 +43,7 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [D:/C\#_Project/PROFI_TRENNING/ProfiDesktop/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[D:/C\#_Project/PROFI_TRENNING/ProfiDesktop/Views/SearchView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

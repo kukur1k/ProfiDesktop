@@ -21,6 +21,9 @@
         <DataTemplate DataType="vm:DashBoardViewModel">
             <views:DashBoardView/>
         </DataTemplate>
+        <DataTemplate DataType="vm:SearchViewModel">
+            <views:SearchView/>
+        </DataTemplate>
     </Window.DataTemplates>
 
     <Panel>
@@ -93,12 +96,12 @@
                             Content="Главная"
                             FontSize="15"
                             FontWeight="DemiBold"
-                            Command="{Binding GoDashboard}"/>  
+                            Command="{Binding GoDashboardCommand}"/>  
                         <Button Background="Transparent"
                             Content="Поиск"
                             FontSize="15"
                             FontWeight="DemiBold"
-                            Command=""/>  
+                            Command="{Binding GoSearchCommand}"/>  
                         <Button Background="Transparent"
                             Content="Подборки"
                             FontSize="15"

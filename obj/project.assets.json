@@ -107,6 +107,22 @@
           "buildTransitive/Avalonia.BuildServices.targets": {}
         }
       },
+      "Avalonia.Controls.DataGrid/12.1.2": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "12.1.0"
+        },
+        "compile": {
+          "lib/net10.0/Avalonia.Controls.DataGrid.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Avalonia.Controls.DataGrid.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Avalonia.Desktop/12.1.0": {
         "type": "package",
         "dependencies": {
@@ -857,6 +873,24 @@
         "tools/netstandard2.0/Avalonia.BuildServices.Collector.dll",
         "tools/netstandard2.0/Avalonia.BuildServices.dll",
         "tools/netstandard2.0/runtimeconfig.json"
+      ]
+    },
+    "Avalonia.Controls.DataGrid/12.1.2": {
+      "sha512": "Tw02SZd/B42Gq6/l9IBPfuM+VsHPq7c6LXb9mT0xVjZB2UPeynfKlBgQDcrhu/SOfYUGk7tQSRmLFM2kaAjdrw==",
+      "type": "package",
+      "path": "avalonia.controls.datagrid/12.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "_manifest/cyclonedx/bom.cdx.json",
+        "avalonia.controls.datagrid.12.1.2.nupkg.sha512",
+        "avalonia.controls.datagrid.nuspec",
+        "lib/net10.0/Avalonia.Controls.DataGrid.dll",
+        "lib/net10.0/Avalonia.Controls.DataGrid.xml",
+        "lib/net8.0/Avalonia.Controls.DataGrid.dll",
+        "lib/net8.0/Avalonia.Controls.DataGrid.xml",
+        "readme.md"
       ]
     },
     "Avalonia.Desktop/12.1.0": {
@@ -1665,6 +1699,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Avalonia >= 12.1.0",
+      "Avalonia.Controls.DataGrid >= 12.1.2",
       "Avalonia.Desktop >= 12.1.0",
       "Avalonia.Fonts.Inter >= 12.1.0",
       "Avalonia.Themes.Fluent >= 12.1.0",
@@ -1722,6 +1757,10 @@
           "Avalonia": {
             "target": "Package",
             "version": "[12.1.0, )"
+          },
+          "Avalonia.Controls.DataGrid": {
+            "target": "Package",
+            "version": "[12.1.2, )"
           },
           "Avalonia.Desktop": {
             "target": "Package",
