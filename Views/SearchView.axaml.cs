@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using System;  
 using Avalonia.Interactivity;
 using ProfiDesktop.ViewModels;
 
