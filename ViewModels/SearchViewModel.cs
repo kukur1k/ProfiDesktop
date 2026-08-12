@@ -115,5 +115,12 @@ public partial class SearchViewModel : ViewModelBase
         }
     }
 
+    [RelayCommand]
+    public void RemoveTechnology(string technology)
+    {
+        var TechnologyList = Technology.Split(',').ToList();
+        Technology = string.Join(",", TechnologyList.Where(x => x != technology));
+    }
+
 
 }

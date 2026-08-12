@@ -31,7 +31,7 @@ public partial class SearchView : UserControl
         {
             if (DataContext is SearchViewModel vm)
             {
-                // vm.RemoveTechnology(technology);
+                vm.RemoveTechnology(technology);
             }
         }
     }

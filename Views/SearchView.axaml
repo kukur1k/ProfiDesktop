@@ -20,7 +20,8 @@
                 <TextBox Text="{Binding SuggestQuery}"
                     PlaceholderText="Введите технологию..."
                     Width="200"
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left"
+                    Margin="0 0 0 20"/>
                 
                 <Border Background="White"
                     BorderThickness="1"
@@ -42,6 +43,30 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </Border>
+
+                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="120,Auto,120,Auto">
+                    <!-- рейтинг -->
+                    <TextBlock Text="Мин. рейтинг:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding MinRating}" Grid.Row="0" Grid.Column="1" 
+                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                    <!-- Опыт -->
+                    <TextBlock Text="Мин. опыт:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding MinExp}" Grid.Row="1" Grid.Column="1" 
+                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                    <!-- Уровни -->
+                    <TextBlock Text="Мин. уровень:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                    <TextBox Text="{Binding MinLevel}" Grid.Row="2" Grid.Column="1" 
+                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                    <TextBlock Text="Макс. уровень:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5 5 0 0"/>
+                    <TextBox Text="{Binding MaxLevel}" Grid.Row="2" Grid.Column="3" 
+                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                </Grid>
+
+                
+
             </StackPanel>
             
 
