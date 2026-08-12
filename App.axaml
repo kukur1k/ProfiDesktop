@@ -2,8 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="ProfiDesktop.App"
              xmlns:local="clr-namespace:ProfiDesktop"
+             xmlns:converters="clr-namespace:ProfiDesktop.Converters"
              RequestedThemeVariant="Light">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Resources>
+        <converters:StrToListConverter x:Key="StrToListConverter"/>    
+    </Application.Resources>
 
     <Application.DataTemplates>
         <local:ViewLocator />

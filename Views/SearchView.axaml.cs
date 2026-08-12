@@ -27,7 +27,7 @@ public partial class SearchView : UserControl
     // Обработчик удаления чипа
     private void OnRemoveChipClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.DataContext is string technology)
+        if (sender is Button button && button.Tag is string technology)
         {
             if (DataContext is SearchViewModel vm)
             {
