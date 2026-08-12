@@ -9,4 +9,34 @@
         <vm:SearchViewModel />
     </Design.DataContext>
 
+    <StackPanel Margin="20">
+        <TextBlock Text="Поиск кандидатов"
+            FontSize="22" 
+            FontWeight="Bold"/>
+        <TextBlock Text="Технологии:" FontSize="16"/> 
+        <TextBox Text="{Binding SuggestQuery}" PlaceholderText="Введите технологию..." MaxWidth="200" HorizontalAlignment="Left"/>
+           
+        <Border Background="White"
+            BorderThickness="1"
+            BorderBrush="#DDD"
+            IsVisible="{Binding ShowSuggest}"
+            HorizontalAlignment="Left">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Suggestions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding StringFormat='{0} ➕'}"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                HorizontalAlignment="Center"
+                                Click="OnSuggestionClick"
+                                Tag="{Binding}"/>
+                        </DataTemplate>    
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+            
+    </StackPanel>
+
 </UserControl>

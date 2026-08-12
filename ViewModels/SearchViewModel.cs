@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ public partial class SearchViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _main;
 
-    [ObservableProperty] private string? _technology = null;
-    [ObservableProperty] private List<string>? _suggestions = null;
+    [ObservableProperty] private string? _technology = string.Empty;
+    [ObservableProperty] private List<string>? _suggestions = new();
     [ObservableProperty] private int _minLevel = 0;
     [ObservableProperty] private int _maxLevel = 10;
     [ObservableProperty] private int _minRating = 0;
@@ -64,20 +65,27 @@ public partial class SearchViewModel : ViewModelBase
 
     partial void OnSuggestQueryChanged(string value)
     {
-        if (value.Length >= 1)
+        if (value.Length >= 2)
         {
-            _ = LoagSuggestAsync(value);
+            _ = LoadSuggestAsync(value);
         }
         else
         {
-            Suggestions.Clear();
+            Suggestions = new List<string>();
         }
     }
 
     // загрузка подсказки
-    private async Task LoagSuggestAsync(string query)
+    private async Task LoadSuggestAsync(string query)
     {
         var result = await ApiService.Instance.GetSuggestSearchAsync(query);
+        
+        //Debug - выводит все найденные
+        foreach (var item in result)
+        {
+            Console.WriteLine(item);
+        }
+        
         if (result is not null && result.Count > 0)
         {
             var selected = Technology?.Split(',').ToList();
