@@ -151,7 +151,7 @@ public class SearchUserResultItem
     public string Trend { get; set; }  // "up", "stable", "down"
 }
 
-public record UserSearch(int Total, List<SearchUserResultItem> Users);
+public record UserSearch(int Total, List<SearchUserResultItem> Items);
 
 public class TopTech
 {

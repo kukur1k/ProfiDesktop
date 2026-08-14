@@ -117,6 +117,7 @@
             </Grid>
 
                 <!-- Место для таблицы -->
+            <TextBlock Text="{Binding UsersItems.}">
             <Button Command="{Binding SearchCommand}"
                 Content="Найти"
                 Margin="0 3"/>

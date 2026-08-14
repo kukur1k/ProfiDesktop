@@ -45,8 +45,18 @@ public partial class SearchViewModel : ViewModelBase
     public async Task<string> LoadUsers()
     {
         var responce = await ApiService.Instance.GetUsersSearchAsync(Technology, MinLevel, MaxLevel, MinRating, MinExp, PageSize);
-        TotalUsersItems = responce?.data?.Users;
-        UsersItems = responce?.data?.Users;
+
+        if (responce?.data is null || responce.data.Items is null)
+        {
+            TotalUsersItems = new List<SearchUserResultItem?>();
+            UsersItems = new List<SearchUserResultItem?>();
+            Console.WriteLine("Data Error");
+            return "error";
+        }
+
+        TotalUsersItems = responce?.data?.Items;
+        UsersItems = responce?.data?.Items;
+        Console.WriteLine("Items success");
         return "";
     }
 
