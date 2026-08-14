@@ -15,33 +15,34 @@
             
             <!-- Заголовок -->
             <TextBlock Text="🔍 Поиск кандидатов"
-                    FontSize="22" 
-                    FontWeight="Bold"
-                    Margin="0 10"/>
-        <!-- Строка поиска -->
+                       FontSize="22" 
+                       FontWeight="Bold"
+                       Margin="0 10"/>
+            
+            <!-- Строка поиска -->
             <Grid ColumnDefinitions="*,*">
                 <StackPanel Grid.Column="0">
                     <TextBox Text="{Binding SuggestQuery}"
-                        PlaceholderText="Введите технологию..."
-                        Width="200"
-                        HorizontalAlignment="Left"
-                        Margin="0 0 0 20"/>
+                             PlaceholderText="Введите технологию..."
+                             Width="200"
+                             HorizontalAlignment="Left"
+                             Margin="0 0 0 20"/>
                     
                     <Border Background="White"
-                        BorderThickness="1"
-                        BorderBrush="#DDD"
-                        IsVisible="{Binding ShowSuggest}"
-                        HorizontalAlignment="Left">
+                            BorderThickness="1"
+                            BorderBrush="#DDD"
+                            IsVisible="{Binding ShowSuggest}"
+                            HorizontalAlignment="Left">
                         <ScrollViewer>
                             <ItemsControl ItemsSource="{Binding Suggestions}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Button Content="{Binding StringFormat='➕ {0}'}"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            HorizontalAlignment="Center"
-                                            Click="OnSuggestionClick"
-                                            Tag="{Binding}"/>
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                HorizontalAlignment="Center"
+                                                Click="OnSuggestionClick"
+                                                Tag="{Binding}"/>
                                     </DataTemplate>    
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -49,30 +50,23 @@
                     </Border>
 
                     <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="120,Auto,120,Auto">
-                        <!-- рейтинг -->
                         <TextBlock Text="Мин. рейтинг:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
                         <TextBox Text="{Binding MinRating}" Grid.Row="0" Grid.Column="1" 
-                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                                 Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
 
-                        <!-- Опыт -->
                         <TextBlock Text="Мин. опыт:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
                         <TextBox Text="{Binding MinExp}" Grid.Row="1" Grid.Column="1" 
-                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                                 Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
 
-                        <!-- Уровни -->
                         <TextBlock Text="Мин. уровень:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
                         <TextBox Text="{Binding MinLevel}" Grid.Row="2" Grid.Column="1" 
-                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                                 Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
 
                         <TextBlock Text="Макс. уровень:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5 5 0 0"/>
                         <TextBox Text="{Binding MaxLevel}" Grid.Row="2" Grid.Column="3" 
-                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                                 Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
                     </Grid>
-
-                    
-
                 </StackPanel>
-                
 
                 <!-- Чипы -->
                 <StackPanel Grid.Column="1">
@@ -86,53 +80,59 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="Transparent"
-                                    Background="#ead4ed"
-                                    CornerRadius="20"
-                                    Padding="4 4"
-                                    Margin="5 3"
-                                    HorizontalAlignment="Left">
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Border Background="#ead4ed"
+                                        CornerRadius="20"
+                                        Padding="7 2"
+                                        Margin="5">
+                                    <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding}"
-                                            Foreground="White"
-                                            VerticalAlignment="Center"
-                                            FontSize="16"
-                                            FontWeight="SemiBold"
-                                            Margin="3 0 0 0"/>
-                                        <Button Content="❌" VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="OnRemoveChipClick"
-                                            Cursor="Hand"
-                                            Tag="{Binding}"/>
+                                                   Foreground="White"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="16"
+                                                   FontWeight="SemiBold"/>
+                                        <Button Content="❌"
+                                                VerticalAlignment="Center"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Foreground="White"
+                                                Click="OnRemoveChipClick"
+                                                Cursor="Hand"
+                                                Tag="{Binding}"/>
                                     </StackPanel>
-                                    
                                 </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    
                 </StackPanel>
-
             </Grid>
 
-                <!-- Место для таблицы -->
-            <TextBlock Text="{Binding UsersItems.}">
+            <!-- Кнопка поиска -->
             <Button Command="{Binding SearchCommand}"
-                Content="Найти"
-                Margin="0 3"/>
-            <StackPanel HorizontalAlignment="Stretch">
-                <DataGrid ItemsSource="{Binding UsersItems}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"
-                            Binding="{Binding DisplayName}"
-                            Width="50"/> 
-                        <DataGridTextColumn Header="Кандидат"
-                            Binding="{Binding DisplayName}"
-                            Width="150"/>    
+                    Content="🔍 Найти"
+                    Margin="0 3"
+                    HorizontalAlignment="Left"/>
 
-                        <DataGridTemplateColumn Header="Навыки" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
+            <TextBlock
+                Text="{Binding UsersItems.Count, StringFormat='Количество: {0}'}"
+                FontSize="14"/>
+            <!-- Таблица -->
+            <StackPanel HorizontalAlignment="Stretch">
+                <dg:DataGrid ItemsSource="{Binding UsersItems}"
+                            AutoGenerateColumns="False"
+                            BorderThickness="1"
+                            BorderBrush="#898282"
+                            GridLinesVisibility="All"
+                            >
+                    <dg:DataGrid.Columns>
+                        <dg:DataGridTextColumn Header="ID"
+                                               Binding="{Binding Id}"
+                                               Width="90"/> 
+                        <dg:DataGridTextColumn Header="Кандидат"
+                                               Binding="{Binding DisplayName}"
+                                               Width="150"/>    
+
+                        <dg:DataGridTemplateColumn Header="Навыки" Width="*">
+                            <dg:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ItemsControl ItemsSource="{Binding Skills}">
                                         <ItemsControl.ItemsPanel>
@@ -142,29 +142,29 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Border Background="#E8F0FE"
-                                                    CornerRadius="10"
-                                                    Padding="6 3"
-                                                    Margin="2">
+                                                <Border Background="#d9b5d6"
+                                                        CornerRadius="10"
+                                                        Padding="6"
+                                                        Margin="2">
                                                     <TextBlock Text="{Binding}" FontSize="11" />
                                                 </Border>    
                                             </DataTemplate>    
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>    
                                 </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                            </dg:DataGridTemplateColumn.CellTemplate>
+                        </dg:DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Рейтинг"
-                            Binding="{Binding CompetencyIndex}"
-                            Width="80"/>
+                        <dg:DataGridTextColumn Header="Рейтинг"
+                                               Binding="{Binding CompetencyIndex}"
+                                               Width="90"/>
 
-                        <DataGridTextColumn Header="Тренд" 
-                            Binding="{Binding Trend}" 
-                            Width="60" /> 
+                        <dg:DataGridTextColumn Header="Тренд" 
+                                               Binding="{Binding Trend}" 
+                                               Width="90" /> 
 
-                    </DataGrid.Columns>
-                </DataGrid>
+                    </dg:DataGrid.Columns>
+                </dg:DataGrid>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

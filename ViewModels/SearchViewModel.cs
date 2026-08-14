@@ -32,8 +32,8 @@ public partial class SearchViewModel : ViewModelBase
 
    
 
-    [ObservableProperty] private List<SearchUserResultItem?> _totalUsersItems;
-    [ObservableProperty] private List<SearchUserResultItem?> _usersItems;
+    [ObservableProperty] private List<SearchUserResultItem?> _totalUsersItems = new();
+    [ObservableProperty] private List<SearchUserResultItem?> _usersItems = new();
     
 
     public SearchViewModel(MainWindowViewModel main)
