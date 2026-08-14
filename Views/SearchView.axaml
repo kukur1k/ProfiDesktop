@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:ProfiDesktop.ViewModels"
              xmlns:dg="using:Avalonia.Controls"
+             xmlns:converters="clr-namespace:ProfiDesktop.Converters"
              x:Class="ProfiDesktop.Views.SearchView"
              x:DataType="vm:SearchViewModel">
 
@@ -9,114 +10,161 @@
         <vm:SearchViewModel />
     </Design.DataContext>
 
-    <StackPanel Margin="20">
-        <TextBlock Text="🔍 Поиск кандидатов"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20" Spacing="10">
+            
+            <!-- Заголовок -->
+            <TextBlock Text="🔍 Поиск кандидатов"
                     FontSize="22" 
                     FontWeight="Bold"
                     Margin="0 10"/>
         <!-- Строка поиска -->
-        <Grid ColumnDefinitions="*,*">
-            <StackPanel Grid.Column="0">
-                <TextBox Text="{Binding SuggestQuery}"
-                    PlaceholderText="Введите технологию..."
-                    Width="200"
-                    HorizontalAlignment="Left"
-                    Margin="0 0 0 20"/>
+            <Grid ColumnDefinitions="*,*">
+                <StackPanel Grid.Column="0">
+                    <TextBox Text="{Binding SuggestQuery}"
+                        PlaceholderText="Введите технологию..."
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Margin="0 0 0 20"/>
+                    
+                    <Border Background="White"
+                        BorderThickness="1"
+                        BorderBrush="#DDD"
+                        IsVisible="{Binding ShowSuggest}"
+                        HorizontalAlignment="Left">
+                        <ScrollViewer>
+                            <ItemsControl ItemsSource="{Binding Suggestions}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{Binding StringFormat='➕ {0}'}"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            HorizontalAlignment="Center"
+                                            Click="OnSuggestionClick"
+                                            Tag="{Binding}"/>
+                                    </DataTemplate>    
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="120,Auto,120,Auto">
+                        <!-- рейтинг -->
+                        <TextBlock Text="Мин. рейтинг:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                        <TextBox Text="{Binding MinRating}" Grid.Row="0" Grid.Column="1" 
+                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                        <!-- Опыт -->
+                        <TextBlock Text="Мин. опыт:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                        <TextBox Text="{Binding MinExp}" Grid.Row="1" Grid.Column="1" 
+                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                        <!-- Уровни -->
+                        <TextBlock Text="Мин. уровень:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                        <TextBox Text="{Binding MinLevel}" Grid.Row="2" Grid.Column="1" 
+                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+
+                        <TextBlock Text="Макс. уровень:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5 5 0 0"/>
+                        <TextBox Text="{Binding MaxLevel}" Grid.Row="2" Grid.Column="3" 
+                                Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                    </Grid>
+
+                    
+
+                </StackPanel>
                 
-                <Border Background="White"
-                    BorderThickness="1"
-                    BorderBrush="#DDD"
-                    IsVisible="{Binding ShowSuggest}"
-                    HorizontalAlignment="Left">
-                    <ScrollViewer>
-                        <ItemsControl ItemsSource="{Binding Suggestions}">
-                            <ItemsControl.ItemTemplate>
+
+                <!-- Чипы -->
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Технологии:" FontSize="20" Margin="0 0 0 10" FontWeight="SemiBold"/> 
+                    <ItemsControl ItemsSource="{Binding Technology, Converter={StaticResource StrToListConverter}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>    
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Transparent"
+                                    Background="#ead4ed"
+                                    CornerRadius="20"
+                                    Padding="4 4"
+                                    Margin="5 3"
+                                    HorizontalAlignment="Left">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <TextBlock Text="{Binding}"
+                                            Foreground="White"
+                                            VerticalAlignment="Center"
+                                            FontSize="16"
+                                            FontWeight="SemiBold"
+                                            Margin="3 0 0 0"/>
+                                        <Button Content="❌" VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Click="OnRemoveChipClick"
+                                            Cursor="Hand"
+                                            Tag="{Binding}"/>
+                                    </StackPanel>
+                                    
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    
+                </StackPanel>
+
+            </Grid>
+
+                <!-- Место для таблицы -->
+            <Button Command="{Binding SearchCommand}"
+                Content="Найти"
+                Margin="0 3"/>
+            <StackPanel HorizontalAlignment="Stretch">
+                <DataGrid ItemsSource="{Binding UsersItems}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID"
+                            Binding="{Binding DisplayName}"
+                            Width="50"/> 
+                        <DataGridTextColumn Header="Кандидат"
+                            Binding="{Binding DisplayName}"
+                            Width="150"/>    
+
+                        <DataGridTemplateColumn Header="Навыки" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="{Binding StringFormat='➕ {0}'}"
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        HorizontalAlignment="Center"
-                                        Click="OnSuggestionClick"
-                                        Tag="{Binding}"/>
-                                </DataTemplate>    
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Border>
+                                    <ItemsControl ItemsSource="{Binding Skills}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>    
+                                            </ItemsPanelTemplate>    
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#E8F0FE"
+                                                    CornerRadius="10"
+                                                    Padding="6 3"
+                                                    Margin="2">
+                                                    <TextBlock Text="{Binding}" FontSize="11" />
+                                                </Border>    
+                                            </DataTemplate>    
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>    
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="120,Auto,120,Auto">
-                    <!-- рейтинг -->
-                    <TextBlock Text="Мин. рейтинг:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
-                    <TextBox Text="{Binding MinRating}" Grid.Row="0" Grid.Column="1" 
-                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                        <DataGridTextColumn Header="Рейтинг"
+                            Binding="{Binding CompetencyIndex}"
+                            Width="80"/>
 
-                    <!-- Опыт -->
-                    <TextBlock Text="Мин. опыт:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
-                    <TextBox Text="{Binding MinExp}" Grid.Row="1" Grid.Column="1" 
-                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                        <DataGridTextColumn Header="Тренд" 
+                            Binding="{Binding Trend}" 
+                            Width="60" /> 
 
-                    <!-- Уровни -->
-                    <TextBlock Text="Мин. уровень:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0 5 0 0"/>
-                    <TextBox Text="{Binding MinLevel}" Grid.Row="2" Grid.Column="1" 
-                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-
-                    <TextBlock Text="Макс. уровень:" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="5 5 0 0"/>
-                    <TextBox Text="{Binding MaxLevel}" Grid.Row="2" Grid.Column="3" 
-                            Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-                </Grid>
-
-                
-
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-            
-
-            <!-- Чипы -->
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="Технологии:" FontSize="20" Margin="0 0 0 10" FontWeight="SemiBold"/> 
-                <ItemsControl ItemsSource="{Binding Technology, Converter={StaticResource StrToListConverter}}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>    
-                    </ItemsControl.ItemsPanel>
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderBrush="Transparent"
-                                Background="#ead4ed"
-                                CornerRadius="20"
-                                Padding="4 4"
-                                Margin="5 3"
-                                HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding}"
-                                        Foreground="White"
-                                        VerticalAlignment="Center"
-                                        FontSize="16"
-                                        FontWeight="SemiBold"
-                                        Margin="3 0 0 0"/>
-                                    <Button Content="❌" VerticalAlignment="Center"
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        Click="OnRemoveChipClick"
-                                        Cursor="Hand"
-                                        Tag="{Binding}"/>
-                                </StackPanel>
-                                
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                
-            </StackPanel>
-
-        </Grid>
-
-
-    </StackPanel>
-    
-    
-
-        
-
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>
