@@ -8,3 +8,10 @@ public partial class ProfileViewModel : ViewModelBase
 {
     
 }
+
+
+
+public class ProileData
+{
+    public string publicId {get; set;} = string.Empty;
+}

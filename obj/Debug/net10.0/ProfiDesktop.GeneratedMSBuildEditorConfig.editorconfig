@@ -45,5 +45,8 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [D:/C\#_Project/PROFI_TRENNING/ProfiDesktop/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[D:/C\#_Project/PROFI_TRENNING/ProfiDesktop/Views/ProileView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [D:/C\#_Project/PROFI_TRENNING/ProfiDesktop/Views/SearchView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
