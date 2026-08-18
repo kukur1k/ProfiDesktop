@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ProfiDesktop.Models;
+using ProfiDesktop.ViewModels;
 
 namespace ProfiDesktop.Services;
 
@@ -136,6 +137,20 @@ public class ApiService
             return null;
         }
     } 
+
+    public async Task<ProfileData?> GetUserByIdAsync(int _userId)
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<ProfileData>>($"/users/{_userId}?mode=employer");
+            return responce?.data;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
 
 }
 
