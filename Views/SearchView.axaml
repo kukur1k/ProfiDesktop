@@ -69,7 +69,7 @@
                 </StackPanel>
 
                 <!-- Чипы -->
-                <StackPanel Grid.Column="1" Background="AliceBlue">
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="Технологии:" FontSize="20" Margin="0 0 0 10" FontWeight="SemiBold"/> 
                     <ItemsControl ItemsSource="{Binding Technology, Converter={StaticResource StrToListConverter}}">
                         <ItemsControl.ItemsPanel>

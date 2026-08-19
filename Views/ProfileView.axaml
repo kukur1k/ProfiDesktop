@@ -18,10 +18,10 @@
       <TextBlock Text="{Binding DisplayName}"
         FontSize="18" FontWeight="SemiBold"/>
 
-      <Border BorderBrush="#3f0fec"
+      <Border BorderBrush="#5d5b68"
         BorderThickness="1" Padding="10">
           <StackPanel Spacing="10">
-            <TextBlock Text="Рейтинг надежности"
+            <TextBlock Text="📊 Рейтинг надежности"
               FontSize="15"
               FontWeight="SemiBold"/>
 
@@ -59,13 +59,69 @@
               <TextBlock Grid.Column="2" Text="{Binding TrustLevel, StringFormat=' {0}%'}" 
                 FontSize="15"/>
             </Grid>
-            
 
-        
+            <Grid ColumnDefinitions="150,100">
+              <TextBlock Text="{Binding ConfirmsCount, StringFormat='Подтверждений: {0} |'}" Grid.Column="0" FontSize="14" FontWeight="SemiBold"/>
+              <TextBlock Text="{Binding SkillsCount, StringFormat=' Навыков: {0}'}" Grid.Column="1" FontSize="14" FontWeight="SemiBold"/>
+            </Grid>
+            
           </StackPanel>
-          
-          
       </Border>
+
+      <Border
+        Padding="10" Margin="0 10 0 0">
+        <StackPanel>
+          <TextBlock FontSize="15"
+              FontWeight="SemiBold" Text="🛠️ Подтвержденные навыки"/>
+          <ItemsControl ItemsSource="{Binding Skills}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid ColumnDefinitions="120,60,*" Margin="0 2">
+                  <TextBlock Grid.Column="0"
+                    Text="{Binding Technology}"
+                    Foreground="{Binding TextColor}"
+                    VerticalAlignment="Center"/>
+                  <TextBlock Grid.Column="1"
+                    Text="{Binding LevelText}"
+                    Foreground="{Binding TextColor}"
+                    VerticalAlignment="Center"/>
+                  <TextBlock Grid.Column="2"
+                    Text="{Binding CheckMarks}"
+                    Foreground="#15c82d"
+                    VerticalAlignment="Center"
+                    ToolTip.Tip="{Binding ToolTip}"/>
+                    
+                </Grid>  
+              </DataTemplate>  
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+        
+        
+      </Border>
+
+
+      <Border
+        Padding="10">
+        <StackPanel>
+          <TextBlock FontSize="15"
+              FontWeight="SemiBold" Text="📅 Опыт работы"/>
+          <ItemsControl ItemsSource="{Binding Experiences}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                  <TextBlock
+                    Text="{Binding DisplayText}"
+                    FontWeight="{Binding FontWeight}"
+                    VerticalAlignment="Center"
+                    Margin="0 5"/>
+              </DataTemplate>  
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </StackPanel>
+        
+        
+      </Border>
+
     </StackPanel>
     
 

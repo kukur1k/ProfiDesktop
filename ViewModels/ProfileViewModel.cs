@@ -39,6 +39,7 @@ public partial class ProfileViewModel : ViewModelBase
     [ObservableProperty] private string _errorText = "";
     [ObservableProperty] private bool   _hasError  = false;
 
+
     public ProfileViewModel(MainWindowViewModel main, int userId)
     {
         _main = main;
@@ -57,13 +58,15 @@ public partial class ProfileViewModel : ViewModelBase
             var data = await ApiService.Instance.GetUserByIdAsync(_userId);
             if (data is null)
             {
-                ErrorText = "Профиль не наайден";
+                ErrorText = "Профиль не найден";
                 HasError = true;
                 return;
             }
 
             await Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
             {
+                PublicId = data.PublicId;
+
                 DisplayName = data.DisplayName;
                 IsActive = data.IsActive;
                 CompetencyIndex = data.CompetencyIndex;
@@ -86,7 +89,7 @@ public partial class ProfileViewModel : ViewModelBase
                 }
 
                 Experiences.Clear();
-                foreach (var e in data.Experiences)
+                foreach (var e in data.Experience)
                 {
                     Experiences.Add(new ExperienceItem
                     {
@@ -124,7 +127,7 @@ public class ProfileData
     public int ConfirmsCount { get; set; }
     public int SkillsCount { get; set; }
     public List<SkillItem> Skills { get; set; } = new();
-    public List<ExperienceItem> Experiences { get; set; } = new();
+    public List<ExperienceItem> Experience { get; set; } = new();
 }
 
 public class SkillItem
@@ -133,6 +136,11 @@ public class SkillItem
     public int Level { get; set; }
     public int ConfirmsCount { get; set; }
     public bool HasConfirms {get; set;}
+
+    public string LevelText => $"{Level}/10";
+    public string CheckMarks => new string('✓', Math.Min(ConfirmsCount, 5)) + (ConfirmsCount > 5? $"({ConfirmsCount})" : "");
+    public string TextColor => HasConfirms ? "Black" : "#AAAAAA";
+    public string ToolTip      => $"Подтверждений: {ConfirmsCount}";
 }
 
 public class ExperienceItem
@@ -142,4 +150,16 @@ public class ExperienceItem
     public bool   IsCurrent { get; set; }
     public string EmpType   { get; set; } = string.Empty;
     public string Position  { get; set; } = string.Empty;
+
+    public string DateRange    => $"{DateStart}–{DateEnd}";
+    public string FontWeight   => IsCurrent ? "Bold" : "Normal";
+    public string EmpTypeIcon  => EmpType switch
+    {
+        "full_time"     => "🏢",
+        "freelance"     => "💻",
+        "self_employed" => "👤",
+        "individual"    => "📋",
+        _               => "•"
+    };
+    public string DisplayText  => $"{DateRange} {EmpTypeIcon} {Position}";
 }

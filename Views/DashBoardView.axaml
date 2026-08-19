@@ -88,7 +88,8 @@
                 FontSize="22" 
                 FontWeight="Bold" />
 
-            <Border BorderBrush="#3f0fec" BorderThickness="1" Padding="5" HorizontalAlignment="Left">
+            <!-- #3f0fec -->
+            <Border BorderBrush="#5d5b68" BorderThickness="1" Padding="5" HorizontalAlignment="Left">
                 <StackPanel Spacing="10">
                     <ItemsControl ItemsSource="{Binding TopTechnologies}">
                         <ItemsControl.ItemTemplate>
