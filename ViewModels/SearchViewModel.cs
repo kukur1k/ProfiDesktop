@@ -42,6 +42,12 @@ public partial class SearchViewModel : ViewModelBase
         _ = LoadUsers();
     }
 
+    [RelayCommand]
+    public void GoToUserProfile(int userId)
+    {
+        _main.CurrentPage = new ProfileViewModel(_main, userId);
+    }
+
     public async Task<string> LoadUsers()
     {
         var responce = await ApiService.Instance.GetUsersSearchAsync(Technology, MinLevel, MaxLevel, MinRating, MinExp, PageSize);

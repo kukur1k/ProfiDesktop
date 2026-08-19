@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:ProfiDesktop.ViewModels"
+             x:DataType="vm:ProfileViewModel"
+             x:Class="ProfiDesktop.Views.ProfileView">
+    
+    <Design.DataContext>
+      <vm:ProileViewModel />
+    </Design.DataContext>
+
+
+    <StackPanel Margin="20" Spacing="10">
+    <TextBlock Text="{Binding PublicId, StringFormat='👤 Кандидат {0}'}"
+        FontSize="18" FontWeight="SemiBold"/>
+      <TextBlock Text="{Binding DisplayName}"
+        FontSize="18" FontWeight="SemiBold"/>
+
+      <Border BorderBrush="#3f0fec"
+        BorderThickness="1" Padding="10">
+          <StackPanel Spacing="10">
+            <TextBlock Text="Рейтинг надежности"
+              FontSize="15"
+              FontWeight="SemiBold"/>
+
+            <TextBlock Text="{Binding CompetencyIndex, StringFormat='Индекс компетенций: {0}%'}" 
+              FontSize="15"/>
+            <Border
+              HorizontalAlignment="Left"
+              Background="#EEEEEE"
+              BorderBrush="#CCCCCC"
+              BorderThickness="1" Height="12">
+                <Border Background="#3f0fec"
+                  HorizontalAlignment="Left"
+                  Width="{Binding CompetencyBarWidth}"
+                  Height="12"/>
+            </Border>
+
+            <TextBlock Text="{Binding TrustLevel , StringFormat='Доверие Сообщества: {0}%'}"
+              FontSize="15"/>
+            <Border
+            HorizontalAlignment="Left"
+              Background="#EEEEEE"
+              BorderBrush="#CCCCCC"
+              BorderThickness="1" Height="12">
+                <Border Background="#3f0fec"
+                  HorizontalAlignment="Left"
+                  Width="{Binding TrustBarWidth}"
+                  Height="12"/>
+            </Border>
+          </StackPanel>
+          
+          
+      </Border>
+    </StackPanel>
+    
+
+</UserControl>

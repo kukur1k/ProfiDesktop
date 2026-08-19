@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace ProfiDesktop.Views;
 
-public partial class ProileView : UserControl
+public partial class ProfileView : UserControl
 {
-    public ProileView()
+    public ProfileView()
     {
         InitializeComponent();
     }

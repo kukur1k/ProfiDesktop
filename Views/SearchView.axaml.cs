@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using System;  
 using Avalonia.Interactivity;
 using ProfiDesktop.ViewModels;
+using ProfiDesktop.Services;
 
 namespace ProfiDesktop.Views;
 
@@ -35,4 +36,15 @@ public partial class SearchView : UserControl
             }
         }
     }
+
+    private void OnUserDoubleClick(object sender, RoutedEventArgs e)
+{
+    if (sender is DataGrid grid && grid.SelectedItem is SearchUserResultItem user)
+    {
+        if (DataContext is SearchViewModel vm)
+        {
+            vm.GoToUserProfile(user.Id);
+        }
+    }
+}
 }

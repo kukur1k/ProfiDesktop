@@ -122,6 +122,7 @@
                             BorderThickness="1"
                             BorderBrush="#898282"
                             GridLinesVisibility="All"
+                            DoubleTapped="OnUserDoubleClick"
                             >
                     <dg:DataGrid.Columns>
                         <dg:DataGridTextColumn Header="ID"
