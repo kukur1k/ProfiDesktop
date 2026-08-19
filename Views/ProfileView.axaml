@@ -8,12 +8,12 @@
              x:Class="ProfiDesktop.Views.ProfileView">
     
     <Design.DataContext>
-      <vm:ProileViewModel />
+      <vm:ProfileViewModel />
     </Design.DataContext>
 
 
     <StackPanel Margin="20" Spacing="10">
-    <TextBlock Text="{Binding PublicId, StringFormat='👤 Кандидат {0}'}"
+    <TextBlock Text="{Binding PublicId, StringFormat='👤 Кандидат #{0}'}"
         FontSize="18" FontWeight="SemiBold"/>
       <TextBlock Text="{Binding DisplayName}"
         FontSize="18" FontWeight="SemiBold"/>
@@ -25,31 +25,43 @@
               FontSize="15"
               FontWeight="SemiBold"/>
 
-            <TextBlock Text="{Binding CompetencyIndex, StringFormat='Индекс компетенций: {0}%'}" 
-              FontSize="15"/>
-            <Border
-              HorizontalAlignment="Left"
-              Background="#EEEEEE"
-              BorderBrush="#CCCCCC"
-              BorderThickness="1" Height="12">
-                <Border Background="#3f0fec"
-                  HorizontalAlignment="Left"
-                  Width="{Binding CompetencyBarWidth}"
-                  Height="12"/>
-            </Border>
+            <Grid ColumnDefinitions="200,250,70" Margin="0 4">
+              <TextBlock Text="Индекс компетенций:" 
+              FontSize="15" Grid.Column="0"/>
+              <Border Grid.Column="1"
+                HorizontalAlignment="Left"
+                Background="#EEEEEE"
+                BorderBrush="#CCCCCC"
+                BorderThickness="1" Height="12" Width="250">
+                  <Border Background="#3f0fec"
+                    HorizontalAlignment="Left"
+                    Width="{Binding CompetencyBarWidth}"
+                    Height="12"/>
+              </Border>
+              <TextBlock Grid.Column="2" Text="{Binding CompetencyIndex, StringFormat=' {0}%'}" 
+                FontSize="15"/>
+            </Grid>
 
-            <TextBlock Text="{Binding TrustLevel , StringFormat='Доверие Сообщества: {0}%'}"
-              FontSize="15"/>
-            <Border
-            HorizontalAlignment="Left"
-              Background="#EEEEEE"
-              BorderBrush="#CCCCCC"
-              BorderThickness="1" Height="12">
-                <Border Background="#3f0fec"
-                  HorizontalAlignment="Left"
-                  Width="{Binding TrustBarWidth}"
-                  Height="12"/>
-            </Border>
+
+            <Grid ColumnDefinitions="200,250,70" Margin="0 4">
+              <TextBlock Text="Доверие Сообщества:" 
+              FontSize="15" Grid.Column="0"/>
+              <Border Grid.Column="1"
+                HorizontalAlignment="Left"
+                Background="#EEEEEE"
+                BorderBrush="#CCCCCC"
+                BorderThickness="1" Height="12" Width="250">
+                  <Border Background="#3f0fec"
+                    HorizontalAlignment="Left"
+                    Width="{Binding TrustBarWidth}"
+                    Height="12"/>
+              </Border>
+              <TextBlock Grid.Column="2" Text="{Binding TrustLevel, StringFormat=' {0}%'}" 
+                FontSize="15"/>
+            </Grid>
+            
+
+        
           </StackPanel>
           
           
