@@ -11,9 +11,11 @@ namespace ProfiDesktop.ViewModels;
 public partial class ShortlistsViewModel : ViewModelBase
 {
     private readonly MainWindowViewModel _main;
+    
 
     [ObservableProperty] private List<string> _shortlistsTitles = new(); // выбор по имени
     [ObservableProperty] private string _selectedShortlist;
+    private bool HasSelectedShortlist => !string.IsNullOrEmpty(SelectedShortlist);
 
     // для каждой подборки
     [ObservableProperty] private DateTime _createdAt = DateTime.Now;
@@ -42,6 +44,7 @@ public partial class ShortlistsViewModel : ViewModelBase
 
     partial void OnSelectedShortlistChanged(string value)
     {
+        OnPropertyChanged(nameof(HasSelectedShortlist));
         var shortList = _allShortLists?.FirstOrDefault(s => s.Name == value);
         if (shortList is null) return;
 

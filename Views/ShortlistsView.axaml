@@ -1,14 +1,90 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:ProfiDesktop.ViewModels"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:dg="using:Avalonia.Controls"
              x:Class="ProfiDesktop.Views.ShortlistsView"
              x:DataType="vm:ShortlistsViewModel">
 
-  <Design.DataContext>
-    <vm:ShortlistsViewModel/>
-  </Design.DataContext>
-  
+    <Design.DataContext>
+        <vm:ShortlistsViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20" Spacing="10">
+
+            <TextBlock Text="📁 Мои подборки"
+                       FontSize="22" 
+                       FontWeight="Bold"
+                       Margin="0 10"/>
+
+            <Border Background="#F5F5F5"
+                    Padding="12">
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <TextBlock Grid.Column="0"
+                               Text="Подборка:"
+                               FontSize="15"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,10,0"/>
+
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding ShortlistsTitles}"
+                              SelectedItem="{Binding SelectedShortlist}"
+                              PlaceholderText="Выберите подборку"
+                              HorizontalAlignment="Left"
+                              Width="250"/>
+
+                    <Button Grid.Column="2"
+                            Content="➕ Создать"
+                            Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+
+            <Button Content="Редактировать название ✏️"
+                    Command="{}"/>
+
+            <Border Background="White"
+                    Padding="12"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    IsVisible="{Binding HasSelectedShortlist}">
+                <Grid ColumnDefinitions="*,*">
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="{Binding CreatedAt, StringFormat='📅 Дата создания {0:dd.MM.yyyy}'}"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding CandCount, StringFormat='📊 Кандидатов {0} чел.'}"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <TextBlock Text="📋 Список кандидатов"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       Margin="0,10,0,0"/>
+
+            <dg:DataGrid ItemsSource="{Binding Candidates}"
+                         AutoGenerateColumns="False"
+                         BorderThickness="1"
+                         BorderBrush="#898282"
+                         GridLinesVisibility="All"
+                         MinHeight="200">
+                <dg:DataGrid.Columns>
+                    <dg:DataGridTextColumn Header="ID"
+                                           Binding="{Binding PublicId}"
+                                           Width="150"/>
+                    <dg:DataGridTextColumn Header="Рейтинг"
+                                           Binding="{Binding Rating}"
+                                           Width="*"/>
+                </dg:DataGrid.Columns>
+            </dg:DataGrid>
+
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

@@ -106,7 +106,7 @@
                             Content="Подборки"
                             FontSize="15"
                             FontWeight="DemiBold"
-                            Command=""/>  
+                            Command="{Binding GoShortlistsCommand}"/>  
                         <Button Background="Transparent"
                             Content="Отчеты"
                             FontSize="15"
