@@ -82,6 +82,17 @@
                     <dg:DataGridTextColumn Header="Рейтинг"
                                            Binding="{Binding Rating}"
                                            Width="*"/>
+                    <dg:DataGridTemplateColumn Header="Действия" Width="*">
+                          <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                  <Button Content="✕ Удалить"
+                                          Foreground="Red"
+                                          Background="Transparent"
+                                          BorderBrush="Transparent"
+                                          Command=""/>  
+                                </DataTemplate>
+                          </DataGridTemplateColumn.CellTemplate>
+                    </dg:DataGridTemplateColumn>
                 </dg:DataGrid.Columns>
             </dg:DataGrid>
 
