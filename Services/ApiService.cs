@@ -152,6 +152,20 @@ public class ApiService
         }
     }
 
+    public async Task<ApiResponce<List<ShortList>>> GetShortListsAsync()
+    {
+        try
+        {
+            var responce = await _http.GetFromJsonAsync<ApiResponce<List<ShortList>>>("/shortlists");
+            return responce;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
 }
 
 
@@ -222,3 +236,8 @@ public class Skill
     public string? Technology{ get; set; }
     public short? Skilllevel { get; set; }
 }
+
+
+    public record SLCandidate(string PublicId, decimal Rating);
+
+    public record ShortList(int Id, string Name, string Description, DateTime CreatedAt, int CandidatesCount, List<SLCandidate> Candidates);
