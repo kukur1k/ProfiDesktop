@@ -89,7 +89,8 @@
                                           Foreground="Red"
                                           Background="Transparent"
                                           BorderBrush="Transparent"
-                                          Command=""/>  
+                                          Command="{Binding $parent[UserControl].DataContext.RemoveCandidateCommand}"
+                                          CommandParameter="{Binding PublicId}"/>  
                                 </DataTemplate>
                           </DataGridTemplateColumn.CellTemplate>
                     </dg:DataGridTemplateColumn>
