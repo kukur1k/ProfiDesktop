@@ -62,6 +62,8 @@ public partial class ChoiceSlViewModel : ViewModelBase
                  NoteStr ?? $"Добавлен {DateTime.Now} пользователем - {_userId}");
             if (error is null)
             {
+                ErrorText = "Кандидат успешно добавлен в подборку";
+                HasError = true;
                 CloseWindow(true);
             }
             else
