@@ -167,6 +167,11 @@
                     </dg:DataGrid.Columns>
                 </dg:DataGrid>
             </StackPanel>
+
+            <Button>
+                
+            </Button>
+
         </StackPanel>
     </ScrollViewer>
 </UserControl>

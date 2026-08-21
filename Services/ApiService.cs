@@ -166,9 +166,43 @@ public class ApiService
         }
     }
 
+
+    public async Task<string?> PostUserToShortlist(int userId, int slId, string? note)
+    {
+        try
+        {
+            var responce = await _http.PostAsJsonAsync($"/shortlists/{slId}/candidates", new ShortlistAddCandidateRequest(userId, note));
+            var result = await responce.Content.ReadFromJsonAsync<ApiResponce<AddCandidateResponse?>>();
+
+            if (result is null) return "Не удалось разобрать ответ сервера";
+
+            if (!result.success == true || result.data is null)
+            {
+                return "Ошибка обработки запроса";
+            }
+
+            if (result.success)
+            {
+                Console.WriteLine($"Кандидат{result.data.UserId} добавлен в подборку {result.data.ShortlistId}");
+                return null;
+            }
+
+            return result.message ?? "Неизвестиная ошибка";
+
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return ex.Message;
+        }
+    }
+
 }
 
 
+public record AddCandidateResponse(int ShortlistId, int UserId, DateTime AddedAt);
+
+public record ShortlistAddCandidateRequest(int UserId, string? Note);
 
 public class SearchUserResultItem
 {
