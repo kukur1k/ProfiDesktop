@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ProfiDesktop.Models;
 using ProfiDesktop.Services;
 
@@ -15,6 +16,9 @@ public partial class ShortlistsViewModel : ViewModelBase
 
     [ObservableProperty] private List<string> _shortlistsTitles = new(); // выбор по имени
     [ObservableProperty] private string _selectedShortlist;
+
+    // Id выбранной подборки
+    [ObservableProperty] private int _selectedShortlistId;
     private bool HasSelectedShortlist => !string.IsNullOrEmpty(SelectedShortlist);
 
     // для каждой подборки
@@ -48,9 +52,38 @@ public partial class ShortlistsViewModel : ViewModelBase
         var shortList = _allShortLists?.FirstOrDefault(s => s.Name == value);
         if (shortList is null) return;
 
+        SelectedShortlistId = shortList.Id;
+
         Candidates = shortList.Candidates.ToList() ?? [];
         CandCount = shortList.CandidatesCount;
         CreatedAt = shortList.CreatedAt;
+    }
+
+
+    [RelayCommand]
+    public async Task RemoveCandidate(int userId)
+    {
+        try
+        {
+            if (SelectedShortlist is null)
+            {
+                return;
+            }
+
+            var error = await ApiService.Instance.DeleteUserFromShortlist(userId, SelectedShortlistId);
+            
+            if (error is null)
+            {
+                var shortList = _allShortLists?.FirstOrDefault(s => s.Id == SelectedShortlistId);
+                Candidates = shortList.Candidates.ToList() ?? [];
+                CandCount = shortList.CandidatesCount;
+            }
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return;
+        }
     }
 
 

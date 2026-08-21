@@ -197,6 +197,25 @@ public class ApiService
         }
     }
 
+    public async Task<string?> DeleteUserFromShortlist(int userId, int slId)
+    {
+        try
+        {
+            var responce = await _http.DeleteFromJsonAsync<ApiResponce<Object?>>($"/{slId}/candidates/{userId}");
+            if (!responce.success)
+            {
+                return responce.message ?? "Ошибка при удалении";
+            }
+            return responce.message;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return ex.Message;
+        }
+        
+    }
+
 }
 
 
