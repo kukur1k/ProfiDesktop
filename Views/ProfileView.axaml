@@ -122,6 +122,9 @@
         
       </Border>
 
+      <Button Content="➕ В подборку"
+                Command="{Binding AddToShortlistCommand}"/>
+
     </StackPanel>
     
 

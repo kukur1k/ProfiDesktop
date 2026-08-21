@@ -24,19 +24,27 @@ public partial class ChoiceSlViewModel : ViewModelBase
     public ChoiceSlViewModel(int userId)
     {
         _userId = userId;
+        _ = GetShortLists();
 
     }
 
     public async Task GetShortLists()
     {
         var res = await ApiService.Instance.GetShortListsAsync();
-        if (res is null) return;
+        IsLoading = true;
+        if (res is null)
+        {
+            IsLoading = false;
+            return;
+            
+        }
         Shortlists = res.data;
+        IsLoading = false;
     }
 
 
     [RelayCommand]
-    private async Task AddToShortList()
+    private async Task AddToShortlist()
     {
         if (SelectedShortlist is null)
         {

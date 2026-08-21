@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProfiDesktop.Services;
+using ProfiDesktop.Views;
 namespace ProfiDesktop.ViewModels;
 
 public partial class ProfileViewModel : ViewModelBase
@@ -111,6 +115,29 @@ public partial class ProfileViewModel : ViewModelBase
         {
             IsLoading = false;
         }
+    }
+
+
+    [RelayCommand]
+    private async Task AddToShortlist()
+    {
+        var modal = new Window
+        {
+            Title = "Добавить в подборку",
+            Width = 450,
+            Height = 350,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Content = new ChoiceSlView
+            {
+                DataContext = new ChoiceSlViewModel(_userId)
+            }
+        };
+
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            modal.ShowDialog(desktop.MainWindow);
+        }
+        
     }
 
 }
